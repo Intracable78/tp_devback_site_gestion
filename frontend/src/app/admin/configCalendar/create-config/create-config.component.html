@@ -1,0 +1,35 @@
+<div>
+<form>
+<label>start</label>
+<input type="datetime-local" [(ngModel)]="newConfig.start" name="start">
+<br><br>
+
+<label>end</label>
+<input type="datetime-local" [(ngModel)]="newConfig.end" name="end">
+<br><br>
+
+<label>title</label>
+<input type="text" [(ngModel)]="newConfig.title" name="title">
+
+<br><br>
+
+<label>description</label>
+<input type="text" [(ngModel)]="newConfig.description" name="description">
+
+<br><br>
+
+<label>background color</label>
+<input type="color" [(ngModel)]="newConfig.background_color" name="background_color">
+
+<br><br>
+
+<button type="submit" (click)="addConfig()">Add Config</button>
+
+
+
+
+</form>
+
+
+
+</div>

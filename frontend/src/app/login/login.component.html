@@ -1,0 +1,26 @@
+<form [formGroup]="loginForm" #f="ngForm">
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" placeholder="Email" name="email"  formControlName="email">
+    </mat-form-field><br><br>
+
+
+    <div  *ngIf="f.submitted && loginForm.get('email')?.errors?.required" style="color: red">
+        Email is required
+    </div>
+               
+  
+    <mat-form-field class="example-full-width" appearance="fill" registerForm="username">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="Password" formControlName="password" required>
+    </mat-form-field><br>
+    
+    <div  *ngIf="f.submitted && loginForm.get('password')?.errors?.required" style="color: red">
+        Password is required and must have 
+    </div><br>
+
+    <button class="btn btn-primary" (click)="login()">Login</button>
+
+
+</form>
