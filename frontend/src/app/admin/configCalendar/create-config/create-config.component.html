@@ -1,34 +1,41 @@
 <div>
-<form>
-<label>start</label>
-<input type="datetime-local" [(ngModel)]="newConfig.start" name="start">
-<br><br>
+    <form>
+        <label>start</label>
+        <input type="datetime-local" [(ngModel)]="newConfig.start" name="start">
+        <br><br>
 
-<label>end</label>
-<input type="datetime-local" [(ngModel)]="newConfig.end" name="end">
-<br><br>
+        <label>end</label>
+        <input type="datetime-local" [(ngModel)]="newConfig.end" name="end">
+        <br><br>
 
-<label>title</label>
-<input type="text" [(ngModel)]="newConfig.title" name="title">
+        <label>title</label>
+        <input type="text" [(ngModel)]="newConfig.title" name="title">
 
-<br><br>
+        <br><br>
 
-<label>description</label>
-<input type="text" [(ngModel)]="newConfig.description" name="description">
+        <label>category</label>
+        <select name="category" [(ngModel)]="newConfig.category_id">
+            <option *ngFor="let category of categories" [value]="category.id">{{category.title}}</option>
+        </select>
 
-<br><br>
+        <br><br>
 
-<label>background color</label>
-<input type="color" [(ngModel)]="newConfig.background_color" name="background_color">
+        <label>description</label>
+        <input type="text" [(ngModel)]="newConfig.description" name="description">
 
-<br><br>
+        <br><br>
 
-<button type="submit" (click)="addConfig()">Add Config</button>
+        <label>background color</label>
+        <input type="color" [(ngModel)]="newConfig.background_color" name="background_color">
+
+        <br><br>
+
+        <button type="submit" (click)="addConfig()">Add Config</button>
 
 
 
 
-</form>
+    </form>
 
 
 

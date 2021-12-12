@@ -24,9 +24,10 @@ try {
     });
     
     if(verifyUserExist && (await bcrypt.compare(password, verifyUserExist.password))){
+        console.log(verifyUserExist)
         
             const token = jwt.sign(
-                { user_id: verifyUserExist.user_id, user_role: verifyUserExist.roles },
+                { user_id: verifyUserExist.id, user_role: verifyUserExist.roles },
                 process.env.TOKEN_KEY,
                 { expiresIn: "24h"}
             );
@@ -37,6 +38,7 @@ try {
             res.status(200).json({
                 succes: true,
                 idToken: token, 
+                user_id: verifyUserExist.id,
               });
     }
         

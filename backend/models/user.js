@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       models.User.hasMany(models.Lesson)
       models.User.hasOne(models.reset_password_request);
       models.User.hasMany(models.Reservation);
+      models.User.hasMany(models.Config)
     }
   };
   User.init({

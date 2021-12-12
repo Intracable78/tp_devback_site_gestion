@@ -13,7 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.Config.belongsTo(models.Lesson, {
         foreignKey: 'lesson_id'
-      })
+      }),
+        models.Config.belongsTo(models.User, {
+          foreignKey: 'user_id'
+        }),
+        models.Config.belongsTo(models.Category, {
+          foreignKey: 'category_id'
+        })
     }
   };
   Config.init({
@@ -22,10 +28,12 @@ module.exports = (sequelize, DataTypes) => {
     day: DataTypes.DATE,
     interval: DataTypes.DATE,
     state: DataTypes.STRING,
-    lession_id: DataTypes.INTEGER,
+    lesson_id: DataTypes.INTEGER,
     title: DataTypes.STRING,
     description: DataTypes.STRING,
     background_color: DataTypes.STRING,
+    user_id: DataTypes.INTEGER,
+    category_id: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Config',

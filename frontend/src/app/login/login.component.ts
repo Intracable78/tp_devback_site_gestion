@@ -29,7 +29,9 @@ export class LoginComponent implements OnInit {
    login(){
    return this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe((response: any) => {
       if(response.succes){
+        console.log('ok')
         localStorage.setItem('id_token', response.idToken);
+        localStorage.setItem('user_id', response.user_id);
       }
     }) 
   }
