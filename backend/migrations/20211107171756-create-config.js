@@ -23,9 +23,9 @@ module.exports = {
       state: {
         type: Sequelize.STRING
       },
-      lession_id: {
+      lesson_id: {
         type: Sequelize.INTEGER,
-        references : {
+        references: {
           model: 'Lessons',
           key: 'id',
         }

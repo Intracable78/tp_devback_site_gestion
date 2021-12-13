@@ -12,14 +12,18 @@ export class ConfigServiceService {
 
   constructor(private http: HttpClient) {
     this.ROOT_URL = 'http://localhost:5500';
-   }
+  }
 
 
-   postConfig(data: Config): Observable<Config>{
-      return this.http.post<Config>(this.ROOT_URL + '/admin/config', data)
-   }
+  postConfig(data: Config): Observable<Config> {
+    return this.http.post<Config>(this.ROOT_URL + '/admin/config', data)
+  }
 
-   getConfigs(): Observable<Event[]>{
-     return this.http.get<Event[]>(this.ROOT_URL + '/admin/config');
-   }
+  getConfigs(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.ROOT_URL + '/admin/config');
+  }
+
+  getConfigsById(categoryId: number): Observable<Event[]> {
+    return this.http.get<Event[]>(this.ROOT_URL + `/admin/config/${categoryId}`);
+  }
 }

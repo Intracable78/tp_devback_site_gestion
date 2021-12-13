@@ -1,4 +1,10 @@
 <div class="calendrier">
-<full-calendar  [options]="calendarOptions" ></full-calendar>
-<button >Clicker</button>
+    <form>
+        <label>Selection du type de cours souhaité : </label><br>
+        <select name="category" [ngModel]="selectedCategory" (ngModelChange)="loadEventsBySelectedCategory($event)">
+            <option>Tous</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{category.title}}</option>
+        </select>
+    </form><br><br>
+    <full-calendar [options]="calendarOptions"></full-calendar>
 </div>

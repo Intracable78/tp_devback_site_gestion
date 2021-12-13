@@ -40,7 +40,6 @@ router.post('', async (req, res) => {
 })
 
 router.get('', async (req, res) => {
-
     try {
         const configs = await Config.findAll();
         const filteredConfigs = [];
@@ -49,7 +48,7 @@ router.get('', async (req, res) => {
             configs.forEach(config => {
                 if (!config.user_id) {
                     filteredConfigs.push({
-                        //'id': config.id,
+                        'id': config.id,
                         'start': config.start.replace("T", " "),
                         'end': config.end.replace("T", " "),
                         'title': config.title,
@@ -73,10 +72,44 @@ router.get('', async (req, res) => {
     } catch (err) {
         console.log(err);
     }
+})
+
+router.get('/:categoryId', async (req, res) => {
+    let categoryId = req.params.categoryId;
+    try {
+        const configs = await Config.findAll({
+            where:
+                { category_id: categoryId }
+        });
+        const filteredConfigs = [];
+        if (configs) {
+            configs.forEach(config => {
+                if (!config.user_id) {
+                    filteredConfigs.push({
+                        'id': config.id,
+                        'start': config.start.replace("T", " "),
+                        'end': config.end.replace("T", " "),
+                        'title': config.title,
+                        'description': config.description,
+                        'background_color': config.background_color
+                    })
+                }
+                else {
+                    return res.status(404).render("Available")
+                }
+
+            })
+            return res.status(200).json(filteredConfigs);
+        }
+
+        else {
+            return res.status(404).send('Configs not found');
+        }
 
 
-
-
+    } catch (err) {
+        console.log(err);
+    }
 })
 
 module.exports = router;

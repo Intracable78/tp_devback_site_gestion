@@ -18,7 +18,7 @@ export class CreateConfigComponent implements OnInit {
   constructor(private configService: ConfigServiceService, private categoryService: AdminCategoryService) { }
 
   ngOnInit(): void {
-    this.getCategory();
+    this.getCategories();
   }
 
   addConfig(): Subscription {
@@ -27,7 +27,7 @@ export class CreateConfigComponent implements OnInit {
 
   }
 
-  getCategory() {
+  getCategories() {
     this.categoryService.getCategory().subscribe((categories: Category[]) => {
 
       this.categories = categories
