@@ -8,12 +8,12 @@ import { WebRequestService } from './web-request.service';
 })
 export class RegisterServiceService {
 
-  constructor(private webReqService : WebRequestService) { }
+  constructor(private webReqService: WebRequestService) { }
 
 
-   async createUser(email : string, username : string, firstname: string, lastname: string, phone: string, address: string, city: string, country: string, password: string) {
-  
-    await this.webReqService.post('register', {
+  createUser(email: string, username: string, firstname: string, lastname: string, phone: string, address: string, city: string, country: string, password: string) {
+
+    return this.webReqService.post('register', {
       email,
       username,
       firstname,
@@ -23,12 +23,12 @@ export class RegisterServiceService {
       city,
       country,
       password
-    }) 
+    })
 
-    
 
-    
-   
+
+
+
   }
 
 

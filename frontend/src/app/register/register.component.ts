@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterServiceService } from '../register-service.service';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -14,56 +15,40 @@ import {NgForm} from '@angular/forms';
 export class RegisterComponent implements OnInit {
 
 
+  registerForm: FormGroup;
 
-  constructor(private registerService : RegisterServiceService) { }
+  constructor(private registerService: RegisterServiceService, private router: Router, private fb: FormBuilder) {
 
-  ngOnInit(): void {
+    this.registerForm = fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      username: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
+
+    }, { updateOn: 'change' });
   }
 
-  /*registerForm = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    username: new FormControl(null, Validators.required),
-    firstname: new FormControl(null, Validators.required),
-    lastname: new FormControl(null, Validators.required),
-    phone: new FormControl(null, Validators.required),
-    address: new FormControl(null, Validators.required),
-    city: new FormControl(null, Validators.required),
-    country: new FormControl(null, Validators.required),
-    password: new FormControl(null, Validators.required)
+  ngOnInit(): void {
 
-  }); 
-
-  get email() { return this.registerForm.get('email'); }
-  get comment() {return this.registerForm.get('comment');}
+  }
 
 
-  async createUser(){
-    
-    
-    let email: any = this.registerForm.get("email");
-    let username: any =   this.registerForm.get("username");
-    let firstname: any  = this.registerForm.get("firstname");
-    let lastname: any = this.registerForm.get("lastname");
-    let phone: any = this.registerForm.get("phone");
-    let address: any = this.registerForm.get("address");
-    let city: any =  this.registerForm.get("city");
-    let country: any = this.registerForm.get("country");
-    let password: any = this.registerForm.get("password");
-    console.log(email.value)
-   
-     
-    await this.registerService.createUser(email.value, username.value, firstname.value, lastname.value, phone.value, address.value, city.value, country.value, password.value)
-    
-  
-} */
 
-async onSubmit(data: NgForm) {
+  register() {
 
-  console.log(data);
- 
-  await this.registerService.createUser(data.value.email, data.value.username, data.value.firstname, data.value.lastname, data.value.phone, data.value.address, data.value.city, data.value.country, data.value.password)
+    return this.registerService.createUser(this.registerForm.value.email, this.registerForm.value.username, this.registerForm.value.firstname, this.registerForm.value.lastname, this.registerForm.value.phone, this.registerForm.value.address, this.registerForm.value.city, this.registerForm.value.country, this.registerForm.value.password).subscribe((res: any) => {
+      if (res.success) {
+        this.router.navigate(['login']);
+      }
 
-}
+    })
+
+  }
 
 
 } 

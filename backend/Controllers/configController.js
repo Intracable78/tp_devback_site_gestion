@@ -95,7 +95,7 @@ router.get('/:categoryId', async (req, res) => {
                     })
                 }
                 else {
-                    return res.status(404).render("Available")
+                    return;
                 }
 
             })

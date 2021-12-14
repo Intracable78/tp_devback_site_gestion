@@ -78,7 +78,9 @@ export class CalendarComponent {
       this.loadAllEvents();
     }
     else {
+      console.log(intCategoryId)
       this.configService.getConfigsById(intCategoryId).subscribe((event: Event[]) => {
+        console.log(event)
         this.eventsByCategoryId = event;
         this.calendarOptions.events = this.eventsByCategoryId;
         console.log(this.eventsByCategoryId);

@@ -7,22 +7,17 @@ import { WebRequestService } from './web-request.service';
 })
 export class LoginServiceService {
 
-  constructor(private  webReqService : WebRequestService ) { 
+  constructor(private webReqService: WebRequestService) {
 
   }
 
-   login(email : string, password : string) {
-  
-     return this.webReqService.post('login', {
+  login(email: string, password: string) {
+
+    return this.webReqService.post('login', {
       email,
       password
     })
 
   }
 
-  setSession(){
-      
-  }
-
-  
 }

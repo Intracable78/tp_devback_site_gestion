@@ -22,9 +22,9 @@ app.listen(port, () => {
 
 app.use('/register', registerController);
 app.use('/login', loginController);
-app.use('/admin', categoryController);
-app.use('/admin/config', configController);
-app.use('/reservation', reservationController);
+app.use('/admin', isAuth, categoryController);
+app.use('/admin/config', isAuth, configController);
+app.use('/reservation', isAuth, reservationController);
 
 // route de test pour voir si le token jwt est valid 
 app.get('/me', isAuth, (req, res) => {

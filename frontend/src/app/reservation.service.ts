@@ -14,7 +14,7 @@ export class ReservationService {
   }
 
   reservationCourse(userId: string, eventId: string): Observable<any> {
-    return this.http.post(this.ROOT_URL + `/reservation/${eventId}`, { userId })
+    return this.http.post<string>(this.ROOT_URL + `/reservation/${eventId}`, { userId })
 
   }
 

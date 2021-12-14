@@ -1,4 +1,7 @@
 <div class="calendrier">
+    <br>
+    <a mat-raised-button href="http://localhost:4200/admin/config/create">Créer un créneau</a>
+    <br>
     <form>
         <label>Selection du type de cours souhaité : </label><br>
         <select name="category" [ngModel]="selectedCategory" (ngModelChange)="loadEventsBySelectedCategory($event)">

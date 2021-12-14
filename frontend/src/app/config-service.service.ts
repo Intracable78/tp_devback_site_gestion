@@ -8,7 +8,7 @@ import { Config } from './models/config';
 })
 export class ConfigServiceService {
 
-  readonly ROOT_URL;
+  readonly ROOT_URL: string;
 
   constructor(private http: HttpClient) {
     this.ROOT_URL = 'http://localhost:5500';

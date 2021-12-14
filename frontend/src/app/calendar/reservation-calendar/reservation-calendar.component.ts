@@ -12,7 +12,7 @@ import { ReservationService } from 'src/app/reservation.service';
 export class ReservationCalendarComponent implements OnInit {
   eventId: string;
 
-  constructor(private router: ActivatedRoute, private configService: ConfigServiceService, private reservationService: ReservationService) { }
+  constructor(private router: ActivatedRoute, private configService: ConfigServiceService, private reservationService: ReservationService, private routerNav: Router) { }
 
   ngOnInit(): void {
     this.router.queryParams.subscribe((params => {
@@ -23,7 +23,7 @@ export class ReservationCalendarComponent implements OnInit {
   reservation(data: NgForm) {
     let userId = localStorage.getItem('user_id');
     this.reservationService.reservationCourse(userId, this.eventId).subscribe((res) => {
-      console.log(res)
+      this.routerNav.navigate(['calendar']);
     })
   }
 
